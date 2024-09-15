@@ -7,11 +7,13 @@ export interface SearchSubtitlesParams {
   format?: string;
 }
 
-export interface Params {
-  [key: string]: string | number | undefined;
-  id?: number;
-  season?: number;
-  episode?: number;
-  language?: string;
-  format?: string;
-}
+export type SubtitleData = {
+  id: string;
+  url: string;
+  type: string;
+  isHearingImpaired: boolean;
+  flagUrl: string;
+  display: string;
+  language: string;
+  format: string;
+};
