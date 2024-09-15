@@ -1,0 +1,14 @@
+{
+  "trailingComma": "all",
+  "singleQuote": false,
+  "bracketSameLine": true,
+  "bracketSpacing": true,
+  "arrowParens": "always",
+  "printWidth": 100,
+  "tabWidth": 2,
+  "semi": true,
+  "parser": "typescript",
+  "quoteProps": "consistent",
+  "htmlWhitespaceSensitivity": "css",
+  "filepath": "src/**/*.{tsx,ts}"
+}

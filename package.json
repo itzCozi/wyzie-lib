@@ -1,0 +1,30 @@
+{
+  "name": "wyzie-lib",
+  "private": true,
+  "version": "1.0.0",
+  "main": "dist/my-library.umd.js",
+  "module": "dist/my-library.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint src",
+    "lint:fix": "eslint --fix src",
+    "format": "prettier --log-level warn --write \"src/**/*.{tsx,ts}\"",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.10.0",
+    "eslint": "^9.10.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.9.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^8.5.0",
+    "vite": "^5.4.1"
+  }
+}
