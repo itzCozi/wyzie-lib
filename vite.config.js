@@ -9,7 +9,6 @@ export default defineConfig({
       fileName: (format) => `wyzie-lib.${format}.js`
     },
     rollupOptions: {
-      // Externalize dependencies that shouldn't be bundled
       external: [],
       output: {
         globals: {}
