@@ -4,9 +4,9 @@ import path from 'path';
 export default defineConfig({
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'MyLibrary',
-      fileName: (format) => `my-library.${format}.js`
+      entry: path.resolve(__dirname, 'src/main.ts'),
+      name: 'WyzieLib',
+      fileName: (format) => `wyzie-lib.${format}.js`
     },
     rollupOptions: {
       // Externalize dependencies that shouldn't be bundled

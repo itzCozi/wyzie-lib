@@ -1,9 +1,8 @@
 {
   "name": "wyzie-lib",
-  "private": true,
   "version": "1.0.0",
-  "main": "dist/my-library.umd.js",
-  "module": "dist/my-library.es.js",
+  "main": "dist/wyzie-lib.umd.js",
+  "module": "dist/wyzie-lib.es.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
