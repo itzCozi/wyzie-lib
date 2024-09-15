@@ -18,6 +18,14 @@ pnpm install wyzie-lib
 
 ## Usage
 ```ts
+import wyzieLib from 'wyzie-lib';
+
+const { searchSubtitles } = wyzieLib;
+const data = await searchSubtitles({ tmdb_id: 286217, language: "en" });
+console.log(data[0].id);
+```
+or
+```ts
 import { type SubtitleData, searchSubtitles } from 'wyzie-lib';
 
 const data: SubtitleData[] = await searchSubtitles({ tmdb_id: 286217, language: "en" });
