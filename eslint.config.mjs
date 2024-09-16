@@ -11,6 +11,7 @@ export default [
   {plugins: { import: importPlugin }},
   {rules: {
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+    "@typescript-eslint/no-explicit-any": ["off"], // IDC
     "import/extensions": ["error"],
     "indent": ["error", 2], // Enforce 2 spaces for indentation
     "keyword-spacing": ["error", { "before": true, "after": true }], // Ensure spacing around keywords

@@ -28,7 +28,7 @@ async function fetchSubtitles(url: URL): Promise<SubtitleData[]> {
   return await response.json();
 }
 
-export async function searchSubtitles(params: SearchSubtitlesParams): Promise<SubtitleData[]> {
+async function searchSubtitles(params: SearchSubtitlesParams): Promise<SubtitleData[]> {
   try {
     const url = await constructUrl(params);
     return await fetchSubtitles(url);
@@ -37,6 +37,8 @@ export async function searchSubtitles(params: SearchSubtitlesParams): Promise<Su
     throw error;
   }
 }
+
+export { searchSubtitles };
 
 // const data: SubtitleData[] = await searchSubtitles({ tmdb_id: 286217, language: "en" });
 // console.log(data[0].id);
