@@ -1,6 +1,6 @@
 {
   "name": "wyzie-lib",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "keywords": [ "wyzie-subs", "wyzie subs", "subtitle", "search", "library", "typescript", "vite", "fast", "scraper", "subtitle scraper" ],
   "main": "dist/wyzie-lib.umd.js",
   "module": "dist/wyzie-lib.es.js",
