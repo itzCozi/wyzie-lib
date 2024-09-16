@@ -4,6 +4,7 @@
     <h1 align="center">Wyzie Lib</h1>
   </a>
 </p>
+
 Wyzie Lib is a package made for easily implementing [Wyzie Subs](https://subs.wyzie.ru) into your project without all the fuss.
 
 ## Features
