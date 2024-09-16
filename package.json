@@ -4,9 +4,9 @@
   "keywords": [ "wyzie-subs", "wyzie subs", "subtitle", "search", "library", "typescript", "vite", "fast", "scraper", "subtitle scraper" ],
   "main": "dist/wyzie-lib.umd.js",
   "module": "dist/wyzie-lib.es.js",
-  "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "dist/types"
   ],
   "exports": {
     ".": {
@@ -17,7 +17,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && tsc",
     "lint": "eslint src",
     "lint:fix": "eslint --fix src",
     "format": "prettier --log-level warn --write \"src/**/*.{tsx,ts}\"",
@@ -31,10 +31,6 @@
     "globals": "^15.9.0",
     "prettier": "^3.3.3",
     "typescript": "^5.6.2",
-    "typescript-eslint": "^8.5.0",
-    "vite": "^5.4.5"
-  },
-  "dependencies": {
-    "eslint-plugin-import": "^2.30.0"
+    "vite": "^4.0.0"
   }
 }

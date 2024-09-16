@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "dist/types",
+    "emitDeclarationOnly": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
@@ -10,8 +15,6 @@
     "target": "es2022",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "outDir": "./dist",
-    "rootDir": "./src",
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
 
