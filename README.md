@@ -2,6 +2,8 @@
 
 Wyzie Lib is a package made for easily implementing [Wyzie Subs](https://subs.wyzie.ru) into your project without all the fuss.
 
+<sup>2.0 Out Now!</sup>
+
 ## Features
 - **Simple**: Just one function for searching subtitles using Wyzie Subs API.
 - **Fast**: This package was written in Vite with TypeScript, so it's fast and reliable.
