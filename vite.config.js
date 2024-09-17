@@ -1,5 +1,9 @@
 import { defineConfig } from 'vite';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   build: {
@@ -7,7 +11,7 @@ export default defineConfig({
       entry: path.resolve(__dirname, 'src/main.ts'),
       name: 'WyzieLib',
       fileName: (format) => `wyzie-lib.${format}.js`,
-      formats: ['es', 'umd']
+      formats: ['es', 'umd', 'cjs', 'iife']
     },
     rollupOptions: {
       external: [],

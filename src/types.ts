@@ -4,7 +4,7 @@ export interface SearchSubtitlesParams {
   season?: number;
   episode?: number;
   language?: string;
-  format?: string;
+  type?: string;
 }
 
 export type SubtitleData = {
@@ -15,5 +15,4 @@ export type SubtitleData = {
   flagUrl: string;
   display: string;
   language: string;
-  format: string;
 };

@@ -1,6 +1,7 @@
 import { SearchSubtitlesParams, SubtitleData } from "./types";
 import { searchSubtitles } from "./funcs";
 
+// Named exports 😏
 export { searchSubtitles };
 export type { SubtitleData, SearchSubtitlesParams };
 
