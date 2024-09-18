@@ -37,7 +37,7 @@ yarn add wyzie-lib
 ```ts
 import { type SubtitleData, searchSubtitles } from "wyzie-lib";
 
-const data: SubtitleData[] = await searchSubtitles({ tmdb_id: 286217, language: "en" });
+const data: SubtitleData[] = await searchSubtitles({ tmdb_id: 286217 });
 console.log(data[0].id);
 ```
 
