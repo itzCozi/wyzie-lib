@@ -1,4 +1,4 @@
-import { SearchSubtitlesParams, SubtitleData } from "@/types";
+import { SearchSubtitlesParams, SubtitleData, QueryParams } from "@/types";
 
 async function constructUrl({
   tmdb_id,
@@ -9,8 +9,8 @@ async function constructUrl({
   type,
 }: SearchSubtitlesParams): Promise<URL> {
   const url = new URL("https://subs.wyzie.ru/search");
-  const queryParams: Record<string, any> = {
-    id: tmdb_id || imdb_id,
+  const queryParams: QueryParams = {
+    id: String(tmdb_id || imdb_id),
     season,
     episode,
     language,
@@ -19,7 +19,7 @@ async function constructUrl({
 
   Object.entries(queryParams).forEach(([key, value]) => {
     if (value !== undefined) {
-      url.searchParams.append(key, `${value}`);
+      url.searchParams.append(key, value);
     }
   });
 
@@ -39,7 +39,6 @@ export async function searchSubtitles(params: SearchSubtitlesParams): Promise<Su
     const url = await constructUrl(params);
     return await fetchSubtitles(url);
   } catch (error) {
-    console.error("Error fetching subtitles:", error);
-    throw error;
+    throw new Error(`Error fetching subtitles: ${error}`);
   }
 }

@@ -16,3 +16,11 @@ export type SubtitleData = {
   display: string;
   language: string;
 };
+
+export interface QueryParams {
+  id: string;
+  season?: number;
+  episode?: number;
+  language?: string;
+  type?: string;
+}
