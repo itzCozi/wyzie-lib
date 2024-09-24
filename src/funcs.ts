@@ -1,4 +1,4 @@
-import { SearchSubtitlesParams, SubtitleData, QueryParams } from "@/types";
+import { SearchSubtitlesParams, SubtitleData, QueryParams } from "./types";
 
 async function constructUrl({
   tmdb_id,

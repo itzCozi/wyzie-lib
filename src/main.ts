@@ -1,5 +1,5 @@
-import { SearchSubtitlesParams, SubtitleData, QueryParams } from "@/types";
-import { searchSubtitles } from "@/funcs";
+import { SearchSubtitlesParams, SubtitleData, QueryParams } from "./types";
+import { searchSubtitles } from "./funcs";
 
 // Named exports 😏
 export { searchSubtitles };
