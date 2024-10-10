@@ -66,9 +66,10 @@ interface QueryParams {  // Parameters for the wyzie-subs API
 type SubtitleData = {  // Data returned by the API
   id: string;                 // Unique ID of the subtitle from opensubtitles
   url: string;                // Direct download link of the subtitle
-  type: string;               // Subtitle file format
+  format: string;             // Subtitle file format
   isHearingImpaired: boolean; // If the subtitle is hearing impaired
   flagUrl: string;            // Flag of the language
+  media: string;              // Media name of the subtitle
   display: string;            // Actual name of the language
   language: string;           // ISO 3166 code
 };
