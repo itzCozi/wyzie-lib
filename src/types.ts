@@ -10,9 +10,10 @@ export interface SearchSubtitlesParams {
 export type SubtitleData = {
   id: string;
   url: string;
-  type: string;
+  format: string;
   isHearingImpaired: boolean;
   flagUrl: string;
+  media: string;
   display: string;
   language: string;
 };
