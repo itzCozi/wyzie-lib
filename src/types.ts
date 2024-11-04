@@ -4,7 +4,8 @@ export interface SearchSubtitlesParams {
   season?: number;
   episode?: number;
   language?: string;
-  type?: string;
+  format?: string;
+  hi?: boolean;
 }
 
 export type SubtitleData = {
@@ -23,5 +24,6 @@ export interface QueryParams {
   season?: number;
   episode?: number;
   language?: string;
-  type?: string;
+  format?: string;
+  hi?: boolean;
 }

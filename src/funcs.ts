@@ -6,7 +6,8 @@ async function constructUrl({
   season,
   episode,
   language,
-  type,
+  format,
+  hi,
 }: SearchSubtitlesParams): Promise<URL> {
   const url = new URL("https://subs.wyzie.ru/search");
   const queryParams: QueryParams = {
@@ -14,7 +15,8 @@ async function constructUrl({
     season,
     episode,
     language,
-    type,
+    format,
+    hi,
   };
 
   Object.entries(queryParams).forEach(([key, value]) => {
