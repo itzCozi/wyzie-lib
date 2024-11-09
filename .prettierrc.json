@@ -1,15 +1,19 @@
 {
   "trailingComma": "all",
   "singleQuote": false,
+  "embeddedLanguageFormatting": "auto",
   "bracketSameLine": true,
   "bracketSpacing": true,
   "arrowParens": "always",
+  "jsxSingleQuote": false,
+  "quoteProps": "as-needed",
+  "proseWrap": "always",
+  "useTabs": false,
   "printWidth": 100,
   "tabWidth": 2,
+  "singleAttributePerLine": true,
   "semi": true,
-  "endOfLine": "lf",
-  "parser": "typescript",
-  "quoteProps": "consistent",
+  "experimentalTernaries": true,
   "htmlWhitespaceSensitivity": "css",
-  "filepath": "src/**/*.{tsx,ts}"
+  "filepath": "{src/**/*.{ts,js,html,css},*.{ts,js,html,css,json,md,xml}}"
 }
