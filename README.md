@@ -1,7 +1,7 @@
 # Wyzie Lib
 
 Wyzie Lib is a package made for easily implementing [Wyzie Subs](https://subs.wyzie.ru) into your
-project without all the fuss.
+project without all the fuss. [Read our source code!](https://github.com/itzcozi/wyzie-lib)
 
 <sup>2.0 Out Now!</sup>
 
@@ -13,35 +13,23 @@ project without all the fuss.
 
 ## Installation
 
-### NPM
+**NPM**
 
 ```bash
 npm install wyzie-lib
 ```
 
-### PNPM
+**PNPM**
 
 ```bash
 pnpm install wyzie-lib
 ```
 
-### Yarn
+**Yarn**
 
 ```bash
 yarn add wyzie-lib
 ```
-
-## Parameters
-
-- **tmdb_id**: The TMDB ID of the movie or TV show. _(tmdb_id or imdb_id is required)_
-- **imdb_id**: The IMDB ID of the movie or TV show. _(imdb_id or tmdb_id is required)_
-- **type**: The file format of the subtitles returned. _(srt, ass, vtt, txt, sub, mpl, webvtt,
-  dfxp)_
-- **season**: Disired season of subtites _(this requires episode parameter aswell)_
-- **episode**: The episode of the given season.
-- **language**: The ISO 3166 code of the provided subtitles.
-- **display**: The actual name of the language capitalized.
-- **isHearingImpaired**: A boolean indicating if the subtitles are hearing impaired.
 
 ## Usage
 
@@ -53,11 +41,23 @@ const data: SubtitleData[] = await searchSubtitles({ tmdb_id: 286217 });
 console.log(data[0]); // Prints the object of the first subtitle provided in the search
 ```
 
+### Parameters
+
+| Parameter               | Name              | Description                                                                               |
+| ----------------------- | ----------------- | ----------------------------------------------------------------------------------------- |
+| **tmdb_id** - _number_  | TmdbId            | The TMDB ID of the movie or TV show. _(tmdb_id or imdb_id is required)_                   |
+| **imdb_id** - _number_  | ImdbId            | The IMDB ID of the movie or TV show. _(imdb_id or tmdb_id is required)_                   |
+| **format** - _string_   | format            | The file format of the subtitles returned. _(srt, ass, vtt, txt, sub, mpl, webvtt, dfxp)_ |
+| **season** - _number_   | season            | Disired season of subtites _(this requires episode parameter aswell)_                     |
+| **episode** - _number_  | episode           | The episode of the given season.                                                          |
+| **language** - _string_ | language          | The ISO 3166 code of the provided subtitles.                                              |
+| **hi** - _boolean_      | isHearingImpaired | A boolean indicating if the subtitles are hearing impaired.                               |
+
 ### Types
 
-- **SubtitleData**: All returned values from the API with their respective types.
 - **SearchSubtitlesParams**: All valid parameters recognized by the API.
 - **QueryParams**: All parameters (optional and required) available for the wyzie-subs API.
+- **SubtitleData**: All returned values from the API with their respective types.
 
 ```ts
 interface SearchSubtitlesParams {
