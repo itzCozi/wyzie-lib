@@ -9,7 +9,7 @@ async function constructUrl({
   format,
   hi,
 }: SearchSubtitlesParams): Promise<URL> {
-  const url = new URL("https://subs.wyzie.ru/search");
+  const url = new URL("https://sub.wyzie.ru/search");
   const queryParams: QueryParams = {
     id: String(tmdb_id || imdb_id),
     season,

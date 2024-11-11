@@ -1,6 +1,6 @@
 # Wyzie Lib
 
-Wyzie Lib is a package made for easily implementing [Wyzie Subs](https://subs.wyzie.ru) into your
+Wyzie Lib is a package made for easily implementing [Wyzie Subs](https://sub.wyzie.ru) into your
 project without all the fuss. [Read our source code!](https://github.com/itzcozi/wyzie-lib)
 
 <sup>2.0 Out Now!</sup>
