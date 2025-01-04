@@ -7,6 +7,7 @@ project without all the fuss. [Read our source code!](https://github.com/itzcozi
 
 ## Features
 
+- **VTT Parser**: Convert SRT subtitles to VTT format quickly.
 - **Simple**: Just one function for searching subtitles using Wyzie Subs API.
 - **Fast**: This package was written in Vite with TypeScript, so it's fast and reliable.
 - **Open-Source**: The API and package are open-source.
@@ -36,16 +37,14 @@ yarn add wyzie-lib
 ```ts
 import { type SubtitleData, searchSubtitles, parseToVTT } from "wyzie-lib";
 
-const params = { tmdb_id: 286217 };
-
 // Fetches all subtitles for the media with the TMDB ID 286217
 // -----------------------------------------------------------
-const data: SubtitleData[] = await searchSubtitles(params);
+const data: SubtitleData[] = await searchSubtitles({ tmdb_id: 286217, format: "srt" });
 console.log(data[0].id); // Prints the ID of the first subtitle object
 
-// Converts the first subtitle to VTT format using the previous parameters provided
-// --------------------------------------------------------------------------------
-const vttContent = await parseToVTT(params, 0); // Use the first subtitle URL for convenience
+// Converts the first subtitle from SRT to VTT format
+// --------------------------------------------------
+const vttContent = await parseToVTT(data[0].url); // Passes the first subtitle URL
 console.log(vttContent); // Prints the raw VTT content
 ```
 
@@ -70,35 +69,35 @@ console.log(vttContent); // Prints the raw VTT content
 ```ts
 interface SearchSubtitlesParams {
   // Parameters for the searchSubtitles() function
-  tmdb_id?: number;           // Parsed automatically by the API to recognize if its TMDB or IMDB
-  imdb_id?: number;           // Parsed automatically by the API to recognize if its TMDB or IMDB
+  tmdb_id?: number; // Parsed automatically by the API to recognize if its TMDB or IMDB
+  imdb_id?: number; // Parsed automatically by the API to recognize if its TMDB or IMDB
   season?: number;
-  episode?: number;           // Season is required if episode is provided
-  language?: string;          // ISO 3166 code
-  format?: string;            // Subtitle file format
-  hi?: boolean;               // If the subtitle is hearing impaired
+  episode?: number; // Season is required if episode is provided
+  language?: string; // ISO 3166 code
+  format?: string; // Subtitle file format
+  hi?: boolean; // If the subtitle is hearing impaired
 }
 
 interface QueryParams {
   // Parameters for the wyzie-subs API
-  id: string;                 // (Required) The TMDB or IMDB ID of the movie or TV show
-  season?: number;            // The season of the TV show (Required if episode is provided)
-  episode?: number;           // The episode of the TV show (Required if season is provided)
-  language?: string;          // ISO 3166 code
-  format?: string;            // Subtitle file format
-  hi?: boolean;               // If the subtitle is hearing impaired
+  id: string; // (Required) The TMDB or IMDB ID of the movie or TV show
+  season?: number; // The season of the TV show (Required if episode is provided)
+  episode?: number; // The episode of the TV show (Required if season is provided)
+  language?: string; // ISO 3166 code
+  format?: string; // Subtitle file format
+  hi?: boolean; // If the subtitle is hearing impaired
 }
 
 type SubtitleData = {
   // Data returned by the API
-  id: string;                 // Unique ID of the subtitle from opensubtitles
-  url: string;                // Direct download link of the subtitle
-  format: string;             // Subtitle file format
+  id: string; // Unique ID of the subtitle from opensubtitles
+  url: string; // Direct download link of the subtitle
+  format: string; // Subtitle file format
   isHearingImpaired: boolean; // If the subtitle is hearing impaired
-  flagUrl: string;            // Flag of the language
-  media: string;              // Media name of the subtitle
-  display: string;            // Actual name of the language
-  language: string;           // ISO 3166 code
+  flagUrl: string; // Flag of the language
+  media: string; // Media name of the subtitle
+  display: string; // Actual name of the language
+  language: string; // ISO 3166 code
 };
 ```
 

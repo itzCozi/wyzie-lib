@@ -5,9 +5,7 @@ import { searchSubtitles, parseToVTT } from "./funcs";
 export { searchSubtitles, parseToVTT };
 export type { SubtitleData, SearchSubtitlesParams, QueryParams };
 
-// const params = { tmdb_id: 286217 };
-// const data: SubtitleData[] = await searchSubtitles(params);
+// const data: SubtitleData[] = await searchSubtitles({ tmdb_id: 286217, format: "srt" });
 // console.log(data[0].id);
-
-//const vttContent = await parseToVTT(params, 0); // Use the first subtitle URL
-//console.log(vttContent);
+// const vttContent = await parseToVTT(data[0].url); // Use the first subtitle URL
+// console.log(vttContent);
