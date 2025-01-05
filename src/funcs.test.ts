@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseToVTT, searchSubtitles, SubtitleData } from "./main"
+import { parseToVTT, searchSubtitles, SubtitleData } from './main';
 
 describe('Parse to VTT', () => {
 	it('Should Parse Subtitles to VTT', () => {
@@ -7,7 +7,7 @@ describe('Parse to VTT', () => {
         searchSubtitles({ tmdb_id: 2190, season: 1, episode: 1, language: 'en', format: 'srt' }).then((data) => {
             subtitle = data[0];
             parseToVTT(subtitle.url).then((vttContent) => {
-                expect(vttContent).toContain('Kick ass.') // Valid line from episode, I also just think its funny to have that as a testcase
+                expect(vttContent).toContain('Kick ass.'); // Valid line from episode, I also just think its funny to have that as a testcase
             });
         });
 	});

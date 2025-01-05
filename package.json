@@ -18,6 +18,7 @@
   "main": "dist/wyzie-lib.cjs.js",
   "module": "dist/wyzie-lib.es.js",
   "browser": "dist/wyzie-lib.iife.js",
+  "type": "module",
   "files": [
     "dist"
   ],
