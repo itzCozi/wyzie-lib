@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Wyzie Lib - VTT Subtitle Demo</title>
+    <style>
+      :root {
+        --primary-color: #007bff;
+        --hover-color: #0056b3;
+        --success-color: #28a745;
+        --error-color: #dc3545;
+        --text-color: #333;
+        --bg-color: #f8f9fa;
+        --code-bg: #f5f5f5;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+          "Open Sans", "Helvetica Neue", sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        background: var(--bg-color);
+      }
+
+      .container {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: var(--primary-color);
+        border-bottom: 2px solid var(--primary-color);
+        padding-bottom: 0.5rem;
+      }
+
+      h2 {
+        margin-top: 2rem;
+        color: var(--text-color);
+      }
+
+      .demo-section {
+        margin: 2rem 0;
+      }
+
+      /* Video player styling */
+      .video-container {
+        margin: 2rem 0;
+        background: var(--code-bg);
+        padding: 1rem;
+        border-radius: 8px;
+      }
+
+      video {
+        width: 100%;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .controls {
+        margin: 1rem 0;
+        display: flex;
+        gap: 1rem;
+      }
+
+      button {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.2s;
+      }
+
+      button:hover {
+        background: var(--hover-color);
+      }
+
+      #status {
+        margin: 1rem 0;
+        padding: 1rem;
+        border-radius: 4px;
+        white-space: pre-wrap;
+        font-family: monospace;
+      }
+
+      .success {
+        background: #d4edda;
+        color: var(--success-color);
+        border-left: 4px solid var(--success-color);
+      }
+
+      .error {
+        background: #f8d7da;
+        color: var(--error-color);
+        border-left: 4px solid var(--error-color);
+      }
+
+      #debug {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: var(--code-bg);
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        border-left: 4px solid var(--text-color);
+      }
+
+      .doc-section {
+        margin: 2rem 0;
+        padding: 1rem;
+        background: var(--code-bg);
+        border-radius: 4px;
+      }
+
+      code {
+        background: #e9ecef;
+        padding: 0.2rem 0.4rem;
+        border-radius: 3px;
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Wyzie Lib - VTT Subtitle Demo</h1>
+
+      <div class="doc-section">
+        <h2>About This Demo</h2>
+        <p>
+          This demo showcases the VTT subtitle parsing capabilities of Wyzie Lib. It demonstrates
+          how to:
+        </p>
+        <ul>
+          <li>Fetch subtitles using the Wyzie Subs API</li>
+          <li>Parse and convert subtitles to VTT format</li>
+          <li>Add subtitles to an HTML5 video player</li>
+          <li>Toggle subtitle visibility</li>
+        </ul>
+      </div>
+
+      <div class="video-container">
+        <video
+          id="video"
+          controls>
+          <source
+            src="https://anondrop.net/1328112304386084955/the%20martian.mp4"
+            type="video/mp4" />
+        </video>
+
+        <div class="controls">
+          <button onclick="loadSubtitles()">Load Subtitles</button>
+          <button onclick="toggleSubtitles()">Toggle Subtitles</button>
+        </div>
+      </div>
+
+      <div class="doc-section">
+        <h2>Implementation Details</h2>
+        <p>The demo uses the following key features:</p>
+        <ul>
+          <li>Uses <code>searchSubtitles</code> to fetch subtitle URLs</li>
+          <li>Uses <code>parseToVTT</code> to convert subtitle content to VTT format</li>
+          <li>Creates a Blob URL for the VTT content</li>
+          <li>Dynamically adds a <code>&lt;track&gt;</code> element to the video</li>
+          <li>Handles subtitle toggling and error cases</li>
+        </ul>
+      </div>
+
+      <div id="status"></div>
+      <div id="debug"></div>
+    </div>
+
+    <script type="module">
+      import { searchSubtitles, parseToVTT } from "./lib/main.js";
+
+      function updateDebug(message) {
+        const debug = document.getElementById("debug");
+        debug.innerHTML += `${new Date().toISOString()} - ${message}<br>`;
+      }
+
+      window.toggleSubtitles = function () {
+        const video = document.getElementById("video");
+        const track = video.textTracks[0];
+        if (track) {
+          track.mode = track.mode === "showing" ? "hidden" : "showing";
+          updateDebug(`Subtitle track mode: ${track.mode}`);
+        } else {
+          updateDebug("No subtitle track found");
+        }
+      };
+
+      window.loadSubtitles = async function () {
+        const status = document.getElementById("status");
+        const video = document.getElementById("video");
+        const debug = document.getElementById("debug");
+        debug.innerHTML = "";
+
+        try {
+          status.textContent = "Loading subtitles...";
+          status.className = "";
+
+          const subtitles = await searchSubtitles({
+            tmdb_id: 286217,
+            format: "srt",
+            encoding: "utf-8",
+          });
+
+          if (!subtitles.length) {
+            throw new Error("No subtitles found");
+          }
+
+          const subtitleUrl = subtitles[0].url;
+          updateDebug(`Fetched subtitle URL: ${subtitleUrl}`);
+
+          const vttContent = await parseToVTT(subtitleUrl);
+          updateDebug(`Received VTT content (first 100 chars): ${vttContent.substring(0, 100)}`);
+
+          const blob = new Blob([vttContent], { type: "text/vtt" });
+          const vttBlobUrl = URL.createObjectURL(blob);
+          updateDebug(`Created VTT Blob URL: ${vttBlobUrl}`);
+
+          const existingTrack = video.querySelector("track");
+          if (existingTrack) {
+            video.removeChild(existingTrack);
+            updateDebug("Removed existing track");
+          }
+
+          const track = document.createElement("track");
+          track.kind = "subtitles";
+          track.label = "English";
+          track.srclang = "en";
+          track.src = vttBlobUrl;
+          track.default = true;
+
+          video.appendChild(track);
+          updateDebug("Added new track element");
+
+          setTimeout(() => {
+            const textTrack = video.textTracks[0];
+            if (textTrack) {
+              textTrack.mode = "showing";
+              updateDebug(`Set track mode to showing. Current mode: ${textTrack.mode}`);
+            }
+          }, 100);
+
+          status.textContent = `Subtitles loaded successfully!
+        
+        If subtitles are not visible:
+        1. Click the CC button in the video controls
+        2. Use the Toggle Subtitles button
+        3. Try playing the video`;
+          status.className = "success";
+
+          track.addEventListener("load", () => {
+            updateDebug("Track loaded successfully");
+          });
+          track.addEventListener("error", (e) => {
+            updateDebug(`Track error: ${e.message || "Unknown error"}`);
+          });
+        } catch (error) {
+          status.textContent = `Error: ${error.message}`;
+          status.className = "error";
+          updateDebug(`Error: ${error.message}`);
+        }
+      };
+    </script>
+  </body>
+</html>

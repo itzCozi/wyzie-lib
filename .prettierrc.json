@@ -1,0 +1,19 @@
+{
+  "trailingComma": "all",
+  "singleQuote": false,
+  "embeddedLanguageFormatting": "auto",
+  "bracketSameLine": true,
+  "bracketSpacing": true,
+  "arrowParens": "always",
+  "jsxSingleQuote": false,
+  "quoteProps": "as-needed",
+  "proseWrap": "always",
+  "useTabs": false,
+  "printWidth": 100,
+  "tabWidth": 2,
+  "singleAttributePerLine": true,
+  "semi": true,
+  "experimentalTernaries": true,
+  "htmlWhitespaceSensitivity": "css",
+  "filepath": "{src/**/*.{ts,js,.d.ts},*.{ts,js,html,css,json,xml}}"
+}
