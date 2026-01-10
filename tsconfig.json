@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "lib/types",
+    "emitDeclarationOnly": true,
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "es2022",
+    "target": "es2022",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Bundler mode */
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src", "src/**/*.ts"]
+}
