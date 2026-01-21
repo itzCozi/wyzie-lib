@@ -1,4 +1,4 @@
-import { SearchSubtitlesParams, SubtitleData, QueryParams, ConfigurationOptions } from "./types";
+import { SearchSubtitlesParams, SubtitleData, QueryParams, ConfigurationOptions, TmdbSearchResult, TvDetails, SeasonDetails } from "./types";
 
 // Config object
 const config = {
@@ -167,4 +167,54 @@ export async function parseToVTT(subtitleUrl: string): Promise<string> {
     console.error("Error in parseToVTT:", error);
     throw error;
   }
+}
+
+/**
+ * Searches TMDB for movies or TV shows.
+ *
+ * @param {string} query - The search query.
+ * @param {string} [language] - Optional language code (default: en-US).
+ * @returns {Promise<TmdbSearchResult[]>} A promise that resolves to an array of TMDB search results.
+ */
+export async function searchTmdb(query: string, language: string = "en-US"): Promise<TmdbSearchResult[]> {
+  const url = new URL(`${config.baseUrl}/api/tmdb/search`);
+  url.searchParams.append("q", query);
+  url.searchParams.append("language", language);
+
+  const response = await fetch(url.toString());
+  if (!response.ok) {
+    throw new Error(`Failed to search TMDB: ${response.status}`);
+  }
+  return response.json();
+}
+
+/**
+ * Fetches details for a TV show from TMDB.
+ *
+ * @param {number} id - The TMDB ID of the TV show.
+ * @returns {Promise<TvDetails>} A promise that resolves to the TV show details.
+ */
+export async function getTvDetails(id: number): Promise<TvDetails> {
+  const url = `${config.baseUrl}/api/tmdb/tv/${id}`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch TV details: ${response.status}`);
+  }
+  return response.json();
+}
+
+/**
+ * Fetches details for a specific season of a TV show from TMDB.
+ *
+ * @param {number} id - The TMDB ID of the TV show.
+ * @param {number} season - The season number.
+ * @returns {Promise<SeasonDetails>} A promise that resolves to the season details.
+ */
+export async function getSeasonDetails(id: number, season: number): Promise<SeasonDetails> {
+  const url = `${config.baseUrl}/api/tmdb/tv/${id}/${season}`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch season details: ${response.status}`);
+  }
+  return response.json();
 }

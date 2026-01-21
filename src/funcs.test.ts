@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { parseToVTT, searchSubtitles } from "./main";
+import { parseToVTT, searchSubtitles, searchTmdb, getTvDetails, getSeasonDetails } from "./main";
 
 const originalFetch = globalThis.fetch;
 
@@ -144,5 +144,61 @@ describe("parseToVTT", () => {
     await expect(parseToVTT("https://example.com/bad-subtitle")).rejects.toThrow(
       "Invalid subtitle format: not SRT",
     );
+  });
+});
+
+describe("searchTmdb", () => {
+  it("calls the TMDB search API correctly", async () => {
+    const mockResponse = [{ id: 123, name: "Test Show", media_type: "tv" }];
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => mockResponse,
+    });
+    globalThis.fetch = mockFetch as unknown as typeof fetch;
+
+    const result = await searchTmdb("Test Show");
+
+    expect(mockFetch).toHaveBeenCalledTimes(1);
+    const requestUrl = new URL(mockFetch.mock.calls[0][0]);
+    expect(requestUrl.pathname).toBe("/api/tmdb/search");
+    expect(requestUrl.searchParams.get("q")).toBe("Test Show");
+    expect(requestUrl.searchParams.get("language")).toBe("en-US");
+    expect(result).toEqual(mockResponse);
+  });
+});
+
+describe("getTvDetails", () => {
+  it("calls the TV details API correctly", async () => {
+    const mockResponse = { id: 123, name: "Test Show", seasons: [] };
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => mockResponse,
+    });
+    globalThis.fetch = mockFetch as unknown as typeof fetch;
+
+    const result = await getTvDetails(123);
+
+    expect(mockFetch).toHaveBeenCalledTimes(1);
+    const requestUrl = mockFetch.mock.calls[0][0];
+    expect(requestUrl).toContain("/api/tmdb/tv/123");
+    expect(result).toEqual(mockResponse);
+  });
+});
+
+describe("getSeasonDetails", () => {
+  it("calls the Season details API correctly", async () => {
+    const mockResponse = { id: "abc", season_number: 1, episodes: [] };
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => mockResponse,
+    });
+    globalThis.fetch = mockFetch as unknown as typeof fetch;
+
+    const result = await getSeasonDetails(123, 1);
+
+    expect(mockFetch).toHaveBeenCalledTimes(1);
+    const requestUrl = mockFetch.mock.calls[0][0];
+    expect(requestUrl).toContain("/api/tmdb/tv/123/1");
+    expect(result).toEqual(mockResponse);
   });
 });

@@ -98,3 +98,73 @@ export type ConfigurationOptions = {
   /** The API's hostname (default: sub.wyzie.ru) */
   baseUrl: string;
 }
+
+/**
+ * Result object from a TMDB search.
+ */
+export type TmdbSearchResult = {
+  id: number;
+  media_type: string;
+  title?: string;
+  name?: string;
+  original_title?: string;
+  original_name?: string;
+  overview?: string;
+  release_date?: string;
+  first_air_date?: string;
+  poster_path?: string | null;
+  backdrop_path?: string | null;
+  popularity?: number;
+  vote_average?: number;
+};
+
+/**
+ * Summary of a TV season.
+ */
+export type SeasonSummary = {
+  air_date?: string;
+  episode_count?: number;
+  id: number;
+  name: string;
+  overview?: string;
+  poster_path?: string | null;
+  season_number: number;
+  vote_average?: number;
+};
+
+/**
+ * Details of a TV Show.
+ */
+export type TvDetails = {
+  seasons: SeasonSummary[];
+  name: string;
+  id: number;
+};
+
+/**
+ * Details of a TV Episode.
+ */
+export type EpisodeDetails = {
+  air_date?: string;
+  episode_number: number;
+  id: number;
+  name: string;
+  overview?: string;
+  production_code?: string;
+  runtime?: number | null;
+  season_number: number;
+  show_id?: number;
+  still_path?: string | null;
+  vote_average?: number;
+  vote_count?: number;
+  [key: string]: any;
+};
+
+/**
+ * Details of a specific TV Season.
+ */
+export type SeasonDetails = {
+  episodes: EpisodeDetails[];
+  season_number: number;
+  id: string;
+};
