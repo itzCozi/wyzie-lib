@@ -82,7 +82,7 @@ describe("searchSubtitles", () => {
     expect(requestUrl.searchParams.get("episode")).toBeNull();
   });
 
-  it("includes release and filename filters in the query", async () => {
+  it("includes release, file, and origin filters in the query", async () => {
     const mockFetch = vi.fn().mockResolvedValue({
       ok: true,
       json: async () => sampleResponse,
@@ -93,11 +93,15 @@ describe("searchSubtitles", () => {
       tmdb_id: 12345,
       release: "test-release",
       filename: "test-file.mkv",
+      file: ["alt-name.srt"],
+      origin: ["web", "bluray"],
     });
 
     const requestUrl = new URL(mockFetch.mock.calls[0][0] as string);
     expect(requestUrl.searchParams.get("release")).toBe("test-release");
     expect(requestUrl.searchParams.get("filename")).toBe("test-file.mkv");
+    expect(requestUrl.searchParams.get("file")).toBe("alt-name.srt");
+    expect(requestUrl.searchParams.get("origin")).toBe("web,bluray");
   });
 
   it("throws when neither tmdb_id nor imdb_id is provided", async () => {

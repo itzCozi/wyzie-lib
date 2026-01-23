@@ -18,10 +18,14 @@ export type SearchSubtitlesParams = (
   hi?: boolean;
   /** The source where the subtitle will be scraped. Accepts a single value or a list. */
   source?: string | string[];
-  /** Filter by specific release group or name. */
+  /** Filter by specific release group or name (can be a list). */
   release?: string | string[];
-  /** Filter by filename. */
+  /** Filter by filename (aliases: file, fileName). */
   filename?: string | string[];
+  file?: string | string[];
+  fileName?: string | string[];
+  /** Filter by content origin (e.g., WEB, BluRay). */
+  origin?: string | string[];
   /** Additional parameters that can be used for filtering or other purposes. */
   [key: string]: any;
 } & (
@@ -56,13 +60,17 @@ export type SubtitleData = {
   /** The subtitle's source (ex: subdl, subf2m, opensubtitles). */
   source?: string | string[];
   /** The release name of the subtitle. */
-  release?: string;
+  release?: string | null;
   /** List of releases compatible with this subtitle. */
   releases?: string[];
   /** The original filename of the subtitle. */
-  fileName?: string;
+  fileName?: string | null;
   /** The origin of the subtitle (e.g. DVD, WEB, BluRay). */
-  origin?: string;
+  origin?: string | null;
+  /** Which release value matched the user filter. */
+  matchedRelease?: string | null;
+  /** Which user-supplied filter matched. */
+  matchedFilter?: string | null;
 };
 
 /**
@@ -89,6 +97,10 @@ export type QueryParams = {
   release?: string;
   /** Filter by filename. */
   filename?: string;
+  file?: string;
+  fileName?: string;
+  /** Filter by content origin (e.g., WEB, BluRay). */
+  origin?: string;
 }
 
 /**

@@ -32,6 +32,11 @@ async function constructUrl({
   language,
   format,
   source,
+  release,
+  filename,
+  file,
+  fileName,
+  origin,
   hi,
   ...extraParams
 }: SearchSubtitlesParams): Promise<URL> {
@@ -55,6 +60,11 @@ async function constructUrl({
     language: Array.isArray(language) ? language.join(",") : language,
     format: Array.isArray(format) ? format.join(",") : format,
     source: Array.isArray(source) ? source.join(",") : source,
+    release: Array.isArray(release) ? release.join(",") : release,
+    filename: Array.isArray(filename) ? filename.join(",") : filename,
+    file: Array.isArray(file) ? file.join(",") : file,
+    fileName: Array.isArray(fileName) ? fileName.join(",") : fileName,
+    origin: Array.isArray(origin) ? origin.join(",") : origin,
     hi,
   };
 
