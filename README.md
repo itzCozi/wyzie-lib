@@ -5,5 +5,5 @@
   </a>
 </p>
 
-Wyzie Lib is a package made for easily implementing [Wyzie Subs](https://sub.wyzie.ru) into your
-project without all the fuss. [Read the docs](https://docs.wyzie.ru/subs/usage/package).
+Wyzie Lib is a package made for easily implementing [Wyzie Subs](https:
+project without all the fuss. [Read the docs](https:

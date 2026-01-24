@@ -27,7 +27,7 @@ afterEach(() => {
   if (originalFetch) {
     globalThis.fetch = originalFetch;
   } else {
-    // @ts-expect-error - fetch may not exist on certain runtimes
+
     delete globalThis.fetch;
   }
 });

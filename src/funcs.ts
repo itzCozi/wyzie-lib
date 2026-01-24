@@ -1,6 +1,6 @@
 import { SearchSubtitlesParams, SubtitleData, QueryParams, ConfigurationOptions, TmdbSearchResult, TvDetails, SeasonDetails } from "./types";
 
-// Config object
+
 const config = {
   baseUrl: "https://sub.wyzie.ru"
 };
@@ -13,7 +13,7 @@ const config = {
  */
 export function configure(options: ConfigurationOptions) {
   if (options.baseUrl) {
-    config.baseUrl = options.baseUrl.replace(/\/$/, ''); // Remove trailing slash if present
+    config.baseUrl = options.baseUrl.replace(/\/$/, '');
   }
 }
 
@@ -74,7 +74,7 @@ async function constructUrl({
     }
   });
 
-  // Add any extra parameters to the URL
+
   Object.entries(extraParams).forEach(([key, value]) => {
     if (value !== undefined) {
       if (Array.isArray(value)) {
@@ -138,7 +138,7 @@ export async function parseToVTT(subtitleUrl: string): Promise<string> {
     const blocks = normalizedContent.split(/\n\n+/);
     const timestampRegex = /^\d{1,2}:\d{2}:\d{2}[,.]\d{3}\s*-->\s*\d{1,2}:\d{2}:\d{2}[,.]\d{3}$/;
 
-    // Check for valid SRT format
+
     const hasValidSRTFormat = blocks.some((block) => {
       const lines = block.split("\n").map((line) => line.trim());
       return lines.some((line) => timestampRegex.test(line));
