@@ -26,6 +26,8 @@ export type SearchSubtitlesParams = (
   fileName?: string | string[];
   /** Filter by content origin (e.g., WEB, BluRay). */
   origin?: string | string[];
+  /** Bypass cache and fetch fresh results from sources. */
+  refresh?: boolean;
   /** Additional parameters that can be used for filtering or other purposes. */
   [key: string]: any;
 } & (
@@ -65,12 +67,22 @@ export type SubtitleData = {
   releases?: string[];
   /** The original filename of the subtitle. */
   fileName?: string | null;
+  /** Number of downloads on the source platform (if available). */
+  downloadCount?: number | null;
   /** The origin of the subtitle (e.g. DVD, WEB, BluRay). */
   origin?: string | null;
   /** Which release value matched the user filter. */
   matchedRelease?: string | null;
   /** Which user-supplied filter matched. */
   matchedFilter?: string | null;
+};
+
+/**
+ * Response from the /sources endpoint.
+ */
+export type SourcesResponse = {
+  /** List of currently enabled subtitle sources. */
+  sources: string[];
 };
 
 /**
@@ -101,6 +113,8 @@ export type QueryParams = {
   fileName?: string;
   /** Filter by content origin (e.g., WEB, BluRay). */
   origin?: string;
+  /** Bypass cache and fetch fresh results from sources. */
+  refresh?: boolean;
 }
 
 /**

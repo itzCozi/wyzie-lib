@@ -38,6 +38,7 @@ async function constructUrl({
   fileName,
   origin,
   hi,
+  refresh,
   ...extraParams
 }: SearchSubtitlesParams): Promise<URL> {
   if (!tmdb_id && !imdb_id) {
@@ -66,6 +67,7 @@ async function constructUrl({
     fileName: Array.isArray(fileName) ? fileName.join(",") : fileName,
     origin: Array.isArray(origin) ? origin.join(",") : origin,
     hi,
+    refresh,
   };
 
   Object.entries(queryParams).forEach(([key, value]) => {
@@ -227,4 +229,19 @@ export async function getSeasonDetails(id: number, season: number): Promise<Seas
     throw new Error(`Failed to fetch season details: ${response.status}`);
   }
   return response.json();
+}
+
+/**
+ * Fetches the list of currently enabled subtitle sources.
+ *
+ * @returns {Promise<string[]>} A promise that resolves to an array of enabled source names.
+ */
+export async function getSources(): Promise<string[]> {
+  const url = `${config.baseUrl}/sources`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch sources: ${response.status}`);
+  }
+  const data = await response.json();
+  return data.sources;
 }
